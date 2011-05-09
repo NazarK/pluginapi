@@ -1,4 +1,15 @@
-Pluginapi::Application.routes.draw do
+Pluginapi::Application.routes.draw do 
+
+  match 'install' => 'page#install'
+  match 'data_post' => 'page#data_post'
+  match 'data_get' => 'page#data_get'
+
+  get "page/install"
+
+  get "page/data_post"
+
+  get "page/data_get"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
