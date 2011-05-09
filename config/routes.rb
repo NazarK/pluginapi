@@ -1,4 +1,7 @@
 Pluginapi::Application.routes.draw do 
+  root :to => "page#home"
+
+  devise_for :users
 
   match 'install' => 'page#install'
   match 'data_post' => 'page#data_post'
