@@ -15,4 +15,7 @@ class PageController < ApplicationController
   def data_get
     @installation = Installation.find_by_id(params[:id])
   end
+
+  def home
+  end
 end
