@@ -10,10 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110509172860) do
+ActiveRecord::Schema.define(:version => 20110511083611) do
 
   create_table "installations", :force => true do |t|
     t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "org_id"
+    t.string   "uid"
+  end
+
+  add_index "installations", ["uid"], :name => "index_installations_on_uid", :unique => true
+
+  create_table "plugin_data_posts", :force => true do |t|
+    t.integer  "installation_id"
+    t.string   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

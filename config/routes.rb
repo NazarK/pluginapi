@@ -6,14 +6,17 @@ Pluginapi::Application.routes.draw do
   match 'install' => 'page#install'
   match 'data_post' => 'page#data_post'
   match 'data_get' => 'page#data_get'
+  match 'org_set' => 'page#org_set'
+  match 'orgs' => 'page#orgs'
   match '/' => 'page#home'
 
   get "page/install"
 
   get "page/data_post"
-
   get "page/data_get"
   get "page/home"
+  get "page/org_set"
+  get "page/orgs"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

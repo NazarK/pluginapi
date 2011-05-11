@@ -1,1 +1,2 @@
-<%= @installation.data %>
+<% @installation.PluginDataPosts.each do |l| %>
+<%= l.data %>|<% end %>
