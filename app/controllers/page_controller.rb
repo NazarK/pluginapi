@@ -14,7 +14,7 @@ class PageController < ApplicationController
     @installation
   end
 
-  def data_post
+  def data_set
     if params[:uid]==''
       throw :uidNotDefined
     end
@@ -59,6 +59,14 @@ class PageController < ApplicationController
 
   def orgs
     @items = Installation.all
+  end
+
+  def org_get
+    item = Installation.find_by_uid(params[:uid])
+    if !check_pass item 
+      return 
+    end
+    @installation = item
   end
 
 end
