@@ -10,24 +10,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511083611) do
+ActiveRecord::Schema.define(:version => 20110513075124) do
 
-  create_table "installations", :force => true do |t|
-    t.text     "data"
+  create_table "organizations", :force => true do |t|
+    t.integer  "profile_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "org_id"
-    t.string   "uid"
   end
 
-  add_index "installations", ["uid"], :name => "index_installations_on_uid", :unique => true
-
-  create_table "plugin_data_posts", :force => true do |t|
-    t.integer  "installation_id"
+  create_table "profile_urls", :force => true do |t|
+    t.integer  "profile_id"
     t.string   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "profiles", :force => true do |t|
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "uid"
+  end
+
+  add_index "profiles", ["uid"], :name => "index_installations_on_uid", :unique => true
 
   create_table "rails_admin_histories", :force => true do |t|
     t.string   "message"

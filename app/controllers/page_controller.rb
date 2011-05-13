@@ -9,18 +9,18 @@ class PageController < ApplicationController
   end
 
   def install
-    @installation = Installation.add
-    @installation.save
-    @installation
+    @profile = Profile.add
+    @profile.save
+    @profile
   end
 
   def data_set
     if params[:uid]==''
       throw :uidNotDefined
     end
-    item = Installation.find_by_uid(params[:uid])
+    item = Profile.find_by_uid(params[:uid])
     if item.nil?
-      throw :installationNotFound
+      throw :profileNotFound
     end
     if !check_pass item
       return
@@ -29,9 +29,9 @@ class PageController < ApplicationController
     data = data.split("|")
     @count = 0
     data.each do |line|
-      r = PluginDataPost.new
+      r = ProfileURL.new
       r.data = line
-      r.installation_id = item.id
+      r.profile_id = item.id
       r.save
       @count += 1
     end
@@ -39,8 +39,8 @@ class PageController < ApplicationController
   end
 
   def data_get
-    @installation = Installation.find_by_uid(params[:uid])
-    if !check_pass @installation 
+    @profile = Profile.find_by_uid(params[:uid])
+    if !check_pass @profile 
       return 
     end
   end
@@ -49,24 +49,25 @@ class PageController < ApplicationController
   end
   
   def org_set
-    item = Installation.find_by_uid(params[:uid])
+    item = Profile.find_by_uid(params[:uid])
     if !check_pass item 
       return 
     end
-    item.org_id = params[:org_id]
+    item.Organization.name = params[:org_id]
+    item.Organization.save
     item.save
   end
 
   def orgs
-    @items = Installation.all
+    @items = Profile.all
   end
 
   def org_get
-    item = Installation.find_by_uid(params[:uid])
+    item = Profile.find_by_uid(params[:uid])
     if !check_pass item 
       return 
     end
-    @installation = item
+    @profile = item
   end
 
 end
