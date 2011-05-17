@@ -28,12 +28,23 @@ class PageController < ApplicationController
     data = params[:data]
     data = data.split("|")
     @count = 0
-    data.each do |line|
-      r = ProfileURL.new
-      r.data = line
-      r.profile_id = item.id
-      r.save
-      @count += 1
+    allowed_all = AllowLink.all
+    data.each do |line|   
+      allowed = false
+      allowed_all.each do |allowed_link|
+        if line.downcase.starts_with? allowed_link.link.downcase
+	  allowed = true
+	  break
+        end
+      end
+
+      if allowed 
+        r = ProfileURL.new
+        r.data = line
+        r.profile_id = item.id
+        r.save
+        @count += 1
+      end
     end
 
   end

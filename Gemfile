@@ -40,5 +40,6 @@ group :test do
   gem 'spork', '~> 0.9.0.rc'
 end
 
-gem 'devise', '1.3.4'
+gem "bcrypt-ruby", :require => "bcrypt"
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'

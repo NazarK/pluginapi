@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513075124) do
+ActiveRecord::Schema.define(:version => 20110517104119) do
+
+  create_table "allow_links", :force => true do |t|
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "organizations", :force => true do |t|
     t.integer  "profile_id"

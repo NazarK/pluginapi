@@ -23,11 +23,19 @@ describe PageController do
 
   describe 'data_set' do 
     it 'should be successful' do 
+      r = AllowLink.new
+      r.link = "http://yahoo.com"
+      r.save
+
+      r = AllowLink.new
+      r.link = "http://amazon.com"
+      r.save
+
       prof = Profile.add
       uid = prof.uid
       pass = Digest::MD5.hexdigest("#{uid}installation-password")
-      get 'data_set', {:data => 'first line|second line|third line', :uid => uid, :pass => pass}
-      response.body.should == 'data posted, 3 line(s)'
+      get 'data_set', {:data => 'http://AMAZON.com|second line|http://yahoo.com/123', :uid => uid, :pass => pass}
+      response.body.should == 'data posted, 2 line(s)'
       response.should be_success
     end
   end  
@@ -38,17 +46,17 @@ describe PageController do
       uid = prof.uid
       pass = Digest::MD5.hexdigest("#{uid}installation-password")
       r = prof.ProfileURLs.new
-      r.data = 'first line'
+      r.data = 'http://something.com/123'
       r.save
       r = prof.ProfileURLs.new
-      r.data = 'second line'
+      r.data = 'http://yahoo.com/111'
       r.save
       r = prof.ProfileURLs.new
-      r.data = 'third line'
+      r.data = 'http://yahoo.com/222'
       r.save
 
       get 'data_get', { :uid => uid, :pass => pass }
-      response.body.should == 'first line|second line|third line|' 
+      response.body.should == 'http://something.com/123|http://yahoo.com/111|http://yahoo.com/222|' 
       response.should be_success
     end
   end
