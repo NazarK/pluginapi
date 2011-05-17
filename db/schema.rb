@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517104119) do
+ActiveRecord::Schema.define(:version => 20110517085906) do
 
   create_table "allow_links", :force => true do |t|
     t.string   "link"
@@ -73,3 +73,4 @@ ActiveRecord::Schema.define(:version => 20110517104119) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
+>>>>>>> c5e57a3bfd5a80af78a2261166255457b865c761
