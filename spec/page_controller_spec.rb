@@ -45,13 +45,13 @@ describe PageController do
       prof = Profile.add
       uid = prof.uid
       pass = Digest::MD5.hexdigest("#{uid}installation-password")
-      r = prof.ProfileURLs.new
+      r = prof.ProfileUrls.new
       r.data = 'http://something.com/123'
       r.save
-      r = prof.ProfileURLs.new
+      r = prof.ProfileUrls.new
       r.data = 'http://yahoo.com/111'
       r.save
-      r = prof.ProfileURLs.new
+      r = prof.ProfileUrls.new
       r.data = 'http://yahoo.com/222'
       r.save
 

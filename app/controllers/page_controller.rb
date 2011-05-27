@@ -39,7 +39,7 @@ class PageController < ApplicationController
       end
 
       if allowed 
-        r = ProfileURL.new
+        r = ProfileUrl.new
         r.data = line
         r.profile_id = item.id
         r.save
