@@ -12,8 +12,8 @@
 
 ActiveRecord::Schema.define(:version => 20110517085906) do
 
-  create_table "allow_links", :force => true do |t|
-    t.string   "link"
+  create_table "domain_filters", :force => true do |t|
+    t.string   "domain"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

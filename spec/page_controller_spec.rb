@@ -23,18 +23,18 @@ describe PageController do
 
   describe 'data_set' do 
     it 'should be successful' do 
-      r = AllowLink.new
-      r.link = "http://yahoo.com"
+      r = DomainFilter.new
+      r.domain = "yahoo.com"
       r.save
 
-      r = AllowLink.new
-      r.link = "http://amazon.com"
+      r = DomainFilter.new
+      r.domain = "amazon.com"
       r.save
 
       prof = Profile.add
       uid = prof.uid
       pass = Digest::MD5.hexdigest("#{uid}installation-password")
-      get 'data_set', {:data => 'http://AMAZON.com|second line|http://yahoo.com/123', :uid => uid, :pass => pass}
+      get 'data_set', {:data => 'http://www.AMAZON.com|second line|http://WWW.yahoo.com/123', :uid => uid, :pass => pass}
       response.body.should == 'data posted, 2 line(s)'
       response.should be_success
     end

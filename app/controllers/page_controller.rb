@@ -1,3 +1,4 @@
+require "uri"
 class PageController < ApplicationController
   layout 'raw'
   def check_pass item
@@ -28,11 +29,21 @@ class PageController < ApplicationController
     data = params[:data]
     data = data.split("|")
     @count = 0
-    allowed_all = AllowLink.all
+    allowed_all = DomainFilter.all
     data.each do |line|   
       allowed = false
       allowed_all.each do |allowed_link|
-        if line.downcase.starts_with? allowed_link.link.downcase
+        begin
+          host = URI.parse(line).host.downcase
+	rescue
+	  next
+	end
+	parts = host.split(".")
+	if parts.count == 3
+	  host = parts[1]+"."+parts[2]
+	end
+         
+        if host == allowed_link.domain.downcase
 	  allowed = true
 	  break
         end
