@@ -1,3 +1,3 @@
-class ProfileURL < ActiveRecord::Base
+class ProfileUrl < ActiveRecord::Base
   belongs_to :Profile
 end
