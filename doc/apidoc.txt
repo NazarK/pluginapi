@@ -37,3 +37,11 @@ where you can edit all models/tables
 /admin
 
 login: admin@admin.com pass: 123456
+
+3.TESTS
+
+there are 6 tests to test all api calls
+use: rspec spec/ (or rspec --drb spec/ with spork)
+
+
+created by nazar.kuliev@gmail.com for enlikedin (Avniel Dravid)
