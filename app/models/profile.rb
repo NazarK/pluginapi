@@ -1,6 +1,6 @@
 require "digest/md5"
 class Profile < ActiveRecord::Base
-  has_many :ProfileURLs
+  has_many :ProfileUrls
   has_one :Organization
   after_create :create_Organization
 
