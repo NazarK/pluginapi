@@ -15,7 +15,7 @@ class PageController < ApplicationController
     @profile
   end
 
-  def data_set
+  def data_post
     if params[:uid]==''
       throw :uidNotDefined
     end
@@ -30,19 +30,23 @@ class PageController < ApplicationController
     data = data.split("|")
     @count = 0
     allowed_all = DomainFilter.all
+
     data.each do |line|   
       allowed = false
+
+      # extracting domain from url line
+      begin
+        host = URI.parse(line).host.downcase
+      rescue
+        logger.error("ERROR:FILTER: not valid url:'#{line}' profile: #{item.id} org: '#{item.Organization.name}'");
+        next
+      end
+      parts = host.split(".")
+      if parts.count == 3
+	host = parts[1]+"."+parts[2]
+      end
+
       allowed_all.each do |allowed_link|
-        begin
-          host = URI.parse(line).host.downcase
-	rescue
-	  next
-	end
-	parts = host.split(".")
-	if parts.count == 3
-	  host = parts[1]+"."+parts[2]
-	end
-         
         if host == allowed_link.domain.downcase
 	  allowed = true
 	  break
@@ -55,6 +59,8 @@ class PageController < ApplicationController
         r.profile_id = item.id
         r.save
         @count += 1
+      else
+        logger.error("ERROR:FILTER: not filtered url passed: '#{line}' profile: #{item.id} org: '#{item.Organization.name}'")
       end
     end
 

@@ -11,17 +11,17 @@ describe PageController do
     end
   end
 
-  describe 'data_set wrong password' do 
+  describe 'data_post wrong password' do 
     it 'should be successful' do 
       prof = Profile.add
       uid = prof.uid
-      get 'data_set', {:data => 'first line|second line|third line', :uid => "#{uid}", :pass => '12312321'}
+      get 'data_post', {:data => 'first line|second line|third line', :uid => "#{uid}", :pass => '12312321'}
       response.body.should == 'wrong password'
       response.should be_success
     end
   end
 
-  describe 'data_set' do 
+  describe 'data_post' do 
     it 'should be successful' do 
       r = DomainFilter.new
       r.domain = "yahoo.com"
@@ -34,7 +34,7 @@ describe PageController do
       prof = Profile.add
       uid = prof.uid
       pass = Digest::MD5.hexdigest("#{uid}installation-password")
-      get 'data_set', {:data => 'http://www.AMAZON.com|second line|http://WWW.yahoo.com/123', :uid => uid, :pass => pass}
+      get 'data_post', {:data => 'http://www.AMAZON.com|second line|http://somewhere.com|http://WWW.yahoo.com/123', :uid => uid, :pass => pass}
       response.body.should == 'data posted, 2 line(s)'
       response.should be_success
     end

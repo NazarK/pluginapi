@@ -3,9 +3,8 @@ Pluginapi::Application.routes.draw do
 
   devise_for :users
 
-  match 'install' => 'page#install'
-  match 'data_set' => 'page#data_set'
-  match 'data_post' => 'page#data_set'
+  match 'install' => 'page#install' 
+  match 'data_post' => 'page#data_post'
   match 'data_get' => 'page#data_get'
   match 'org_set' => 'page#org_set'
   match 'org_get' => 'page#org_get'
