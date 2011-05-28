@@ -85,4 +85,23 @@ describe PageController do
     end
   end
 
+  describe 'filter_get' do 
+    it 'should be successfull' do 
+      r = DomainFilter.new
+      r.domain = "yahoo.com"
+      r.save
+
+      r = DomainFilter.new
+      r.domain = "amazon.com"
+      r.save
+
+      prof = Profile.add
+      prof.save
+      get 'filter_get', {:uid => prof.uid, :pass => prof.pass}
+
+      response.body.should == 'yahoo.com|amazon.com|'
+   
+    end
+  end
+
 end

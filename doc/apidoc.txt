@@ -20,11 +20,15 @@ example: http://www.yahoo.com/|http://amazon.com
 /data_get?uid=[UID]&pass=[PASS]
 returns all posted urls passed by filter
 
+1.6.
+/filter_get?uid=[UID]&pass=[PASS]
+returns allowed domains, separated by '|'
+example: yahoo.com|google.com|amazon.com|
 
-1.6.NOTES
+1.7.NOTES
 
-1.6.1.[UID] in all calls is a string returned by /install call
-1.6.2.[PASS] is generated with this: md5([UID]+"installation-password")
+1.7.1.[UID] in all calls is a string returned by /install call
+1.7.2.[PASS] is generated with this: md5([UID]+"installation-password")
 so it will be
 
 for installation/profile UID = 48f83b1b56851f1adbf9ef0a56db1035

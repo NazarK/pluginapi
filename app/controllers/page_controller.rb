@@ -92,4 +92,8 @@ class PageController < ApplicationController
     @profile = item
   end
 
+  def filter_get
+    @domains = DomainFilter.order(:id).all
+  end
+
 end
