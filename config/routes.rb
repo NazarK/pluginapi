@@ -11,6 +11,8 @@ Pluginapi::Application.routes.draw do
   match 'filter_get' => 'page#filter_get'
   match 'orgs' => 'page#orgs'
   match '/' => 'page#home'
+  match 'account(/:action)', :controller => 'account'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

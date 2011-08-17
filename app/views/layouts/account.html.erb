@@ -1,0 +1,8 @@
+<% if session[:profile_id].blank? %>
+You are not logged in.
+<% else %>
+  Logged in profile id <%= session[:profile_id] %>
+<% end %>
+<div>
+<%= yield %>
+</div>

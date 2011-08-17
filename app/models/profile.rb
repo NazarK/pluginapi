@@ -22,4 +22,9 @@ class Profile < ActiveRecord::Base
   def pass
     Digest::MD5.hexdigest("#{uid}installation-password")
   end
+
+  def loginpass
+    Digest::MD5.hexdigest("#{uid}login-password")
+  end
+
 end

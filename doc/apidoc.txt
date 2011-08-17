@@ -57,3 +57,9 @@ use: rspec spec/ (or rspec --drb spec/ with spork)
 
 
 created by nazar.kuliev@gmail.com for enlikedin (Avniel Dravid)
+
+4.AUTOLOGIN
+
+to autologin go to url /account/login?uid=[UID]&pass=[PASS]
+
+where [PASS] = md5([UID]+"login-password")
