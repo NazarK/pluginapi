@@ -63,3 +63,5 @@ created by nazar.kuliev@gmail.com for enlikedin (Avniel Dravid)
 to autologin go to url /account/login?uid=[UID]&pass=[PASS]
 
 where [PASS] = md5([UID]+"login-password")
+
+example: http://enlikenment.heroku.com/account/login?uid=f9e6ff9ceeaab5d5a07807ea6e4c90fc&pass=9bfb2193ec4e1b9dcce8b91d87c6998b
