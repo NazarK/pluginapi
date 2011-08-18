@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517085906) do
+ActiveRecord::Schema.define(:version => 20110818115729) do
+
+  create_table "allow_links", :force => true do |t|
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "domain_filters", :force => true do |t|
     t.string   "domain"
@@ -37,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20110517085906) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uid"
+    t.string   "nick"
   end
 
   add_index "profiles", ["uid"], :name => "index_installations_on_uid", :unique => true
@@ -73,4 +80,3 @@ ActiveRecord::Schema.define(:version => 20110517085906) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
->>>>>>> c5e57a3bfd5a80af78a2261166255457b865c761

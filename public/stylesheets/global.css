@@ -1,0 +1,53 @@
+/*
+	Name: .com
+	Description: Main Stylesheet
+	Coder: Grae Joquico
+*/
+@import url('reset.css');
+@font-face { font-family:; src: url('/fonts/'); }
+
+/* HTML5 tags */
+body{font-family: Helvetica Neue, Arial;color:#3d3d3d;}
+header, section, footer,
+aside, nav, article, figure {
+	    display: block;
+}
+header,nav,#content,footer{float:left;}
+header{padding-top:18px;position:relative;border-bottom:5px solid #3d3d3d;margin-bottom:40px;}
+footer{border-top:4px solid #e8e8e8;margin:20px 0;padding-top:20px;}
+section h2{font-size:13px;border-bottom:1px dotted #000;padding-bottom:7px;margin-bottom:12px;}
+section a{text-decoration: underline;color:#343434}
+section a:hover{color:#000;}
+.abtlabel{padding-left:10px;color:#343434;font-size:13.5px;}
+#about input{border:1px solid #ccc;padding:3px;font-size:14px;text-align: center}
+#about p{padding:10px 10px;text-align: center;font-size:12px;color:#7a7a7a;font-style: italic;}
+#about button, .button{background: #e1e1e1;border:1px solid #bfbfbf;font-size:13px;font-weight: bold;padding:7px;margin-top:10px;cursor: pointer;}
+#about button:hover, .button:hover{background:#ccc;}
+#about{margin-top:-14px;}
+#about h2{padding:10px 0;padding-left:10px;border-bottom:1px dotted #ccc;}
+section{font-size:13.5px;}
+#socialbtn{position: absolute;top:0;left:0;}
+nav{padding:20px 0;}
+nav ul li,footer ul li,section ol li{float:left;}
+nav ul li a,footer ul li a{text-decoration: none;color:#8a8a8a;}
+nav ul li{margin-right:40px;font-size:13.5px;}
+footer ul li{font-size:12px;margin-right:6px;}
+.current{font-weight: bold;color:#3d3d3d;}
+#controlbtn{background:#f5f5f5;float:left;width:100%;padding:5px 0px;}
+#prev{float:left;padding-left:10px;}
+#next{float:right;padding-right:10px;}
+#about{border:1px solid #e8e8e8;width:298px;}
+
+
+#flash_notice, #flash_error, #flash_alert, #flash_message {
+  padding: 5px 8px;
+  margin: 10px 0;
+  border-radius: 5px; }
+
+#flash_notice, #flash_message {
+  background-color: #ccffcc;
+  border: solid 1px #66cc66; }
+
+#flash_error, #flash_alert {
+  background-color: #ffcccc;
+  border: solid 1px #cc6666; }
