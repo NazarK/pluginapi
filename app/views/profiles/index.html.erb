@@ -1,0 +1,33 @@
+<table class=scaffold>
+  <tr>
+    <th>id
+    <th>uid
+    <th>nick
+    <th>organization
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @profiles.each do |profile| %>
+  <tr>
+    <td><%= profile.id %>
+    <td><%= profile.uid %>    
+    <td><%= profile.nick %>
+    <td><%= (profile.Organization.name rescue "") %>
+    <td><%= link_to 'Show', "/profiles/"+profile.id.to_s+("?page=#{params[:page]}" rescue "") %></td>
+<% if false %>    
+    <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+    <td><%= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete %></td>
+<% end %>    
+  </tr>
+<% end %>
+</table>
+<br>
+<%= will_paginate @books %>
+
+<br />
+
+<% if false %>
+<%= link_to 'New Profile', new_profile_path %> -->
+<% end %>

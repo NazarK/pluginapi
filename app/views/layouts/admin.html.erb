@@ -21,6 +21,14 @@
 	
 </head>
 
+<style>
+a { color: #000; }
+a:visited { color: #000; }
+a:hover { color: #fff !important; background-color:#000; }
+table.scaffold td, table.scaffold th {
+  padding: 10px;
+}
+</style>
 <body id="index" class="home">
 
 <section id="container" class="container_12">
@@ -28,19 +36,11 @@
 	<section id="logo"><a href="#"><img src="/images/logo.png"/></a></section>
 	<nav>
 		<ul>
-			<li><a class="current" href="/account/home">Home</a></li>
-			<li><a href="#">Sites Tracked</a></li>
-			<li><a href="/account/nick" id=menu_about>About You</a></li>
-			<li><a href="#">Data Shield</a></li>
-			<li><a href="#">Friends</a></li>
+			<li><a class="current" href="/profiles">Profiles</a></li>
 		</ul>
 	</nav>
   <div style='float:right;margin-top:20px;'>
-      <% if session[:profile_id].blank? %>
-      You are not logged in.
-      <% else %>
-        Logged in profile id:<%= session[:profile_id] %> <%= Profile.find(session[:profile_id]).nick %>
-      <% end %>
+        Logged in as admin | <a href="/users/sign_out">Log out</a>
   </div>
 
 	<section id="socialbtn">
@@ -65,8 +65,8 @@
 
 
 
-
 <footer class="grid_12">
+<% if false %>
 	<ul>
 		<li><a href="#">Blog</a></li>
 		<li><span class="separator">|</span></li>
@@ -81,7 +81,9 @@
 		<li><a href="#"><img src="/images/fbicon.png"/></a></li>
 		<li><a href="#"><img src="/images/tweeticon.png"/></a></li>		
 	</ul>
+<% end %>	
 </footer>
+
 </section>
 </body>
 </html>

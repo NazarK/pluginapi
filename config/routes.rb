@@ -1,4 +1,6 @@
 Pluginapi::Application.routes.draw do 
+  resources :profiles
+
   root :to => "page#home"
 
   devise_for :users

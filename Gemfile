@@ -42,3 +42,4 @@ end
 
 gem 'devise', '1.3.4'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'will_paginate', '~>3.0.pre2'

@@ -43,13 +43,13 @@ class PageController < ApplicationController
       end
       parts = host.split(".")
       if parts.count == 3
-	host = parts[1]+"."+parts[2]
+	      host = parts[1]+"."+parts[2]
       end
 
       allowed_all.each do |allowed_link|
         if host == allowed_link.domain.downcase
-	  allowed = true
-	  break
+	        allowed = true
+	        break
         end
       end
 

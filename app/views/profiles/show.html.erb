@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Nick:</b>
+  <%= @profile.nick %>
+</p>
+ 
+<p>
+  <b>Uid:</b>
+  <%= @profile.uid %>
+</p>
+
+
+<p>
+  <b>Organization:</b>
+  <%= (@profile.Organization.name rescue "not defined") %>
+</p>
+
+<b>Urls</b><br>
+<% @profile.ProfileUrls.each do |url|  %>
+  <%= url.data %><br>
+
+<% end %>
+
+
+<% if false %>
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<% end %>
+<%= link_to 'Back', "/profiles"+("?page=#{params[:page]}" rescue "")  %>
