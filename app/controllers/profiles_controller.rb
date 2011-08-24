@@ -28,7 +28,11 @@ class ProfilesController < ApplicationController
     end
     params[:page]=1 if !params[:page]
     #@profiles = Profile.paginate(:page => params[:page], :per_page => 10)
-    @profiles = Profile.paginate_by_sql("SELECT profiles.id, profiles.nick, profiles.uid, profiles.organization_id, profiles.parent_id,
+    @profiles = Profile.paginate_by_sql("SELECT MIN(profiles.id) as id,
+    MIN(profiles.nick) as nick, 
+    MIN(profiles.uid) as uid, 
+    MIN(profiles.organization_id) as organization_id, 
+    MIN(profiles.parent_id) as parent_id,
     COUNT(profile_urls.id) as data_count,
     COUNT(children.id) as children_count
     FROM profiles 
