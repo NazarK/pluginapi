@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
     when "nick"
       order = "ORDER BY nick"
     when "organization"
-      order = "ORDER BY organizations.name"
+      order = "ORDER BY organization_name"
     when "referrals"
       order = "ORDER BY children_count DESC"
     else
@@ -33,6 +33,7 @@ class ProfilesController < ApplicationController
     MIN(profiles.uid) as uid, 
     MIN(profiles.organization_id) as organization_id, 
     MIN(profiles.parent_id) as parent_id,
+    MIN(organizations.name) as organization_name,
     COUNT(profile_urls.id) as data_count,
     COUNT(children.id) as children_count
     FROM profiles 
