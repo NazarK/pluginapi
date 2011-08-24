@@ -1,4 +1,5 @@
 require "uri"
+require "pp"
 class PageController < ApplicationController
   layout 'raw'
   def check_pass item
@@ -11,8 +12,31 @@ class PageController < ApplicationController
 
   def install
     @profile = Profile.add
+    
+    if params[:org_name]
+      org = Organization.find_by_name(params[:org_name])
+      if !org
+        org = Organization.new
+        org.name = params[:org_name]
+        org.save
+      end
+      @profile.organization_id = org.id
+    end
+    
+    if params[:referer_uid]
+      parent = Profile.find_by_uid(params[:referer_uid])
+      if !parent
+        render :text => "ERROR: Profile for referer_uid not found"
+        return
+      end
+      @profile.parent_id = parent.id
+      if !@profile.organization_id
+        @profile.organization_id = parent.organization_id
+      end
+    end
+
     @profile.save
-    @profile
+    render :text => @profile.uid
   end
 
   def data_post
@@ -38,7 +62,7 @@ class PageController < ApplicationController
       begin
         host = URI.parse(line).host.downcase
       rescue
-        logger.error("ERROR:FILTER: not valid url:'#{line}' profile: #{item.id} org: '#{item.Organization.name}'");
+        logger.error("ERROR:FILTER: not valid url:'#{line}' profile: #{item.id} org: '#{item.Organization.name rescue ""}'");
         next
       end
       parts = host.split(".")
@@ -60,7 +84,7 @@ class PageController < ApplicationController
         r.save
         @count += 1
       else
-        logger.error("ERROR:FILTER: not filtered url passed: '#{line}' profile: #{item.id} org: '#{item.Organization.name}'")
+        logger.error("ERROR:FILTER: not filtered url passed: '#{line}' profile: #{item.id} org: '#{item.Organization.name rescue ""}'")
       end
     end
 
@@ -81,8 +105,13 @@ class PageController < ApplicationController
     if !check_pass item 
       return 
     end
-    item.Organization.name = params[:org_id]
-    item.Organization.save
+    org = Organization.find_by_name(params[:org_id])
+    if !org
+      org = Organization.new
+      org.name = params[:org_id]
+      org.save
+    end
+    item.Organization = org
     item.save
   end
 
@@ -96,6 +125,7 @@ class PageController < ApplicationController
       return 
     end
     @profile = item
+    render :text => (item.Organization.name rescue "")
   end
 
   def filter_get

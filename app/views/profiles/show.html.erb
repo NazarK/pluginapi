@@ -18,11 +18,19 @@
 <b>Urls</b><br>
 <% @profile.ProfileUrls.each do |url|  %>
   <%= url.data %><br>
-
 <% end %>
 
+<b>Referrals</b><br>
+<% @profile.Child.each do |child|  %>
+  <a href=/profiles/<%= child.id%>>
+  <b>ID:</b> <%= child.id %>
+  <b>Uid:</b> <%= child.uid %>
+  <b>Nick:</b> <%= child.nick %>
+  </a>
+  <br>
+<% end %>
 
 <% if false %>
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <% end %>
-<%= link_to 'Back', "/profiles"+("?page=#{params[:page]}" rescue "")  %>
+<%= link_to 'Back', "javascript:history.back(1)"   %>

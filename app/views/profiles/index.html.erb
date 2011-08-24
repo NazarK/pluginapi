@@ -1,10 +1,16 @@
+<style>
+.order_active {
+  color: #469 !important;
+}
+</style>
 <table class=scaffold>
   <tr>
-    <th>id
+    <th><a href=?page=<%= params[:page]%>&order=id>id</a>
     <th>uid
-    <th>nick
-    <th>organization
-    <th></th>
+    <th><a href=?page=<%= params[:page]%>&order=nick>nick</a>
+    <th><a href=?page=<%= params[:page]%>&order=organization>organization</a>
+    <th><a href=?page=<%= params[:page]%>&order=data_count>urls count</a>
+    <th><a href=?page=<%= params[:page]%>&order=referrals>referrals count</a></th>
     <th></th>
     <th></th>
   </tr>
@@ -15,7 +21,9 @@
     <td><%= profile.uid %>    
     <td><%= profile.nick %>
     <td><%= (profile.Organization.name rescue "") %>
-    <td><%= link_to 'Show', "/profiles/"+profile.id.to_s+("?page=#{params[:page]}" rescue "") %></td>
+    <td><%= profile.data_count %>
+    <td><%= profile.children_count %>
+    <td><%= link_to 'Show', "/profiles/"+profile.id.to_s %></td>
 <% if false %>    
     <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
     <td><%= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -31,3 +39,11 @@
 <% if false %>
 <%= link_to 'New Profile', new_profile_path %> -->
 <% end %>
+
+<script>
+$(function() {
+  $("a[href$='order=<%= (params[:order]?params[:order]:"id")%>']").addClass("order_active");
+});
+
+
+</script>

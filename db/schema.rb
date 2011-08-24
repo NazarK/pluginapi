@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110818115729) do
+ActiveRecord::Schema.define(:version => 20110824094238) do
 
   create_table "allow_links", :force => true do |t|
     t.string   "link"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20110818115729) do
   end
 
   create_table "organizations", :force => true do |t|
-    t.integer  "profile_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -44,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20110818115729) do
     t.datetime "updated_at"
     t.string   "uid"
     t.string   "nick"
+    t.integer  "organization_id"
+    t.integer  "parent_id"
   end
 
   add_index "profiles", ["uid"], :name => "index_installations_on_uid", :unique => true

@@ -1,8 +1,10 @@
 require "digest/md5"
 class Profile < ActiveRecord::Base
   has_many :ProfileUrls
-  has_one :Organization
-  after_create :create_Organization
+  belongs_to :Organization, :foreign_key => "organization_id"
+  belongs_to :Parent, :foreign_key => "parent_id", :class_name => "Profile"
+  has_many :Child, :foreign_key => "parent_id", :class_name => "Profile"
+  #after_create :create_Organization
 
   def self.add
     rec = self.new

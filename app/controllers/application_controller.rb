@@ -6,9 +6,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if session[:login_to_profiles]
-      session[:login_to_profiles] = nil
-      "/profiles"
+    if session[:login_url]
+      s = session[:login_url]
+      session[:login_url] = nil
+      return s
     else
       "/admin"
     end

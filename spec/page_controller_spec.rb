@@ -74,9 +74,14 @@ describe PageController do
   describe 'org_get' do 
     it 'should be successfull' do
       prof = Profile.add
-      prof.Organization.name = '123'
-      prof.Organization.save
+      
+      org = Organization.new
+      org.name = '123'
+      org.save
+      
+      prof.organization_id = org.id
       prof.save
+      
       uid = prof.uid
       pass = Digest::MD5.hexdigest("#{uid}installation-password")
       get 'org_get', {:uid => uid, :pass => pass}
