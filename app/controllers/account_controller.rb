@@ -7,12 +7,6 @@ class AccountController < ApplicationController
     end
     p = Profile.find_by_uid(params[:uid])
 
-    if p.nick.blank?
-      flash[:message] = "You are logging in first time. Please specify your nick."
-      redirect_to "/account/nick"
-      return
-    end
-
     if !p
       render :text => "profile not found"
       return
@@ -26,6 +20,12 @@ class AccountController < ApplicationController
 
     session[:profile_id] = p.id
 
+    if p.nick.blank?
+      flash[:message] = "You are logging in first time. Please specify your nick."
+      redirect_to "/account/nick"
+      return
+    end
+    
     redirect_to "/account/home"
   end
 
