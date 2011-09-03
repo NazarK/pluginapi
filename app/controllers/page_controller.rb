@@ -170,6 +170,7 @@ class PageController < ApplicationController
             	if source_file.name == 'defaults/preferences/prefs.js' 
                 s += "\r\npref('extensions.enliken.referer_uid', '#{referer.uid}');"                
                 s += "\r\npref('extensions.enliken.referer_nick', '#{referer.nick}');"                
+                s += "\r\npref('extensions.enliken.origin_url', '#{root_url}');"                
             	end
               z.print s
             }
