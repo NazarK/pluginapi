@@ -1,5 +1,7 @@
 require "uri"
 require "pp"
+require 'zip/zip'
+require 'pathname'
 class PageController < ApplicationController
   layout 'raw'
   def check_pass item
@@ -130,6 +132,62 @@ class PageController < ApplicationController
 
   def filter_get
     @domains = DomainFilter.order(:id).all
+  end
+  
+  def referer_plugin 
+      if params[:referer_uid].blank? && params[:referer_nick].blank?
+        render :text => "referer_uid or referer_nick parameter not defined"
+        return
+      end
+      
+      if params[:referer_nick]
+        referer = Profile::find_by_nick(params[:referer_nick])
+        if referer.blank?
+          render :text => "referer with nick=#{params[:referer_nick]} not found"
+          return
+        end
+      end
+      
+      if params[:referer_uid]
+        referer = Profile::find_by_uid(params[:referer_uid])
+        if referer.blank?
+          render :text => "referer with uid=#{params[:referer_uid]} not found"
+          return
+        end
+      end
+      
+      
+  
+  
+      t = Tempfile.new("my-temp-filename-#{Time.now.to_i}")
+
+      Zip::ZipOutputStream.open(t.path) { |z|
+        Zip::ZipFile.open("public/plugin_generic.xpi") { |zip_file|       
+            zip_file.each { |source_file|
+            	puts source_file
+              z.put_next_entry(source_file.name)
+              s = source_file.get_input_stream.read
+            	if source_file.name == 'defaults/preferences/prefs.js' 
+                s += "\r\npref('extensions.enliken.referer_uid', '#{referer.uid}');"                
+                s += "\r\npref('extensions.enliken.referer_nick', '#{referer.nick}');"                
+            	end
+              z.print s
+            }
+        }
+
+      }
+      
+
+      puts referer.nick   
+      filename = "plugin-#{referer.uid}.xpi" if params[:referer_uid]
+      filename = "plugin-#{referer.nick}.xpi" if params[:referer_nick]
+      
+      
+      
+      send_file t.path, :type => 'application/zip',
+                             :disposition => 'attachment',
+                             :filename => filename
+      t.close
   end
 
 end

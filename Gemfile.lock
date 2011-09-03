@@ -90,6 +90,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.6.0)
+    rubyzip (0.9.4)
     spork (0.9.0.rc7)
     sqlite3 (1.3.3)
     sqlite3 (1.3.3-x86-mingw32)
@@ -115,6 +116,7 @@ DEPENDENCIES
   rails_admin!
   rspec (= 2.6.0)
   rspec-rails (= 2.6.0)
+  rubyzip
   spork (~> 0.9.0.rc)
   sqlite3
   webrat (= 0.7.1)

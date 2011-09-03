@@ -14,6 +14,8 @@ Pluginapi::Application.routes.draw do
   match 'orgs' => 'page#orgs'
   match '/' => 'page#home'
   match 'account(/:action)', :controller => 'account'
+  match 'page(/:action)', :controller => 'page'
+  match 'referer_plugin' => 'page#referer_plugin'
 
 
   # The priority is based upon order of creation:
