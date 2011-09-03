@@ -95,4 +95,4 @@ pref('extensions.enliken.referer_nick', 'prince');
 
 It will be added to bottom of prefs.js.
 
-5.3. Source file for generating this plugin is located at: /public/plugin_generic.js
+5.3. Source file for generating this plugin is located at: /public/plugin_generic.xpi
