@@ -76,3 +76,23 @@ where [PASS] = md5([UID]+"login-password")
 
 example: http://enlikenment.heroku.com/account/login?uid=f9e6ff9ceeaab5d5a07807ea6e4c90fc&pass=9bfb2193ec4e1b9dcce8b91d87c6998b
 
+5.GENERATING SPECIFIC PLUGIN FOR REFERER
+
+5.1. To download plugin specific for exact referer use
+/referer_plugin?referer_nick=[NICK]
+or
+/referer_plugin?referer_uid=[UID]
+
+Example: http://pluginapi.heroku.com/referer_plugin?referer_nick=prince
+
+This will generate plugin file on the fly (you will be able to download it from the link).
+
+5.2 This operation adds two strings to original /defaults/preferences/prefs.js file
+inside plugin xpi (zip).
+
+pref('extensions.enliken.referer_uid', '4a8fb19b4d66de3b676f4e277bf97c5e');
+pref('extensions.enliken.referer_nick', 'prince');
+
+It will be added to bottom of prefs.js.
+
+5.3. Source file for generating this plugin is located at: /public/plugin_generic.js
